@@ -22,7 +22,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User post(User user) {
-		// TODO Auto-generated method stub
+		user.setLimitTimeOfSession("22:00");
+		user.setLimitDurationOfSession("02:00");;
+		user.setNumberOfClientsPerPage(10);
+		user.setNumberOfPagamentsPerPage(10);
+		user.setNumberOfSessionsPerPage(10);
+		user.setNumberOfPagamentsPerMonthPage(10);
 		return repository.save(user);
 	}
 
@@ -33,12 +38,41 @@ public class UserServiceImpl implements UserService {
 				.orElseThrow(() -> new UserNotFoundException("user not found"));
 		
 		if(Objects.nonNull(user.getName())) {
+			
 			oldUser.setName(user.getName());
 		}
 		
 		if(Objects.nonNull(user.getPassword())) {
-			oldUser.setName(user.getPassword());
+			oldUser.setPassword(user.getPassword());
+			
 		}
+		if(Objects.nonNull(user.getLimitTimeOfSession())) {
+			oldUser.setLimitTimeOfSession(user.getLimitTimeOfSession());
+			
+		}
+		
+		if(Objects.nonNull(user.getLimitDurationOfSession())) {
+			oldUser.setLimitDurationOfSession(user.getLimitDurationOfSession());
+		}
+		
+		if(Objects.nonNull(user.getNumberOfClientsPerPage())) {
+			oldUser.setNumberOfClientsPerPage(user.getNumberOfClientsPerPage());
+			
+		}
+		
+		if(Objects.nonNull(user.getNumberOfPagamentsPerPage())) {
+			oldUser.setNumberOfPagamentsPerPage(user.getNumberOfPagamentsPerPage());
+			
+		}
+		
+		if(Objects.nonNull(user.getNumberOfSessionsPerPage())) {
+			oldUser.setNumberOfSessionsPerPage(user.getNumberOfSessionsPerPage());
+		}
+		
+		if(Objects.nonNull(user.getNumberOfPagamentsPerMonthPage())) {
+			oldUser.setNumberOfPagamentsPerMonthPage(user.getNumberOfPagamentsPerMonthPage());
+		}
+		
 		
 		return repository.save(oldUser);
 	}

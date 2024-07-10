@@ -23,6 +23,11 @@ public class PagamentController {
 		return service.getAll();
 	}
 	
+	@GetMapping("/getById/{clientId}")
+	public List<Pagament> getByClientId(@PathVariable("clientId") Long clientId){
+		return service.getByClientId(clientId);
+	}
+	
 	
 	@PostMapping("/post/{clientId}")
 	public Pagament postPagament(@RequestBody Pagament pagament, @PathVariable("clientId") Long clientId) {

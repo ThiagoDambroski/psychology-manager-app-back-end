@@ -23,6 +23,11 @@ public class ClientSessionController {
 		return service.getAll();
 	}
 	
+	@GetMapping("/getByClientId/{clientId}")
+	public List<ClientSession> getByClientId(@PathVariable("clientId") Long clientId){
+		return service.getByClientId(clientId);
+	}
+	
 	@PostMapping("/post/{clientId}")
 	public ClientSession post(@RequestBody ClientSession session,@PathVariable("clientId") Long clientId) {
 		return service.post(session,clientId);

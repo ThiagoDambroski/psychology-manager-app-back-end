@@ -53,7 +53,20 @@ public class ClientSessionDaysServiceImpl implements ClientSessionsDaysService {
 			clientSession.setDurationOfSession(newSessionsDays.getDurationOfSession());
 		}
 		
+		if(Objects.nonNull(newSessionsDays.isEveryWeek())) {
+			clientSession.setEveryWeek(newSessionsDays.isEveryWeek());
+		}
+		
 		return repository.save(clientSession);
+	}
+
+	@Override
+	public void delete(Long sessionDaysId) {
+		ClientSessionDays clientSession = repository.findById(sessionDaysId)
+				.orElseThrow(() -> new ClientSessionNotFoundException("Client Session Day Not found"));
+		
+		repository.delete(clientSession);
+		
 	}
 
 }

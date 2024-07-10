@@ -29,7 +29,7 @@ public class ClientSessionDays {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long clientSessionDaysId;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "client_id", referencedColumnName = "clientId")
 	@JsonIgnoreProperties("daysOfSession")
 	private Client client;

@@ -9,11 +9,13 @@ import com.dambroski.clientManager.clientSessionDays.ClientSessionDays;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,7 +40,13 @@ public class ClientSession {
 	
 	private boolean attend;
 	
+	@Lob
+	@Column(columnDefinition = "LONGTEXT")
 	private String sessionDescription;
+	
+	@Lob
+	@Column(columnDefinition = "LONGTEXT")
+	private String tagsDescription;
 	
 	
 	

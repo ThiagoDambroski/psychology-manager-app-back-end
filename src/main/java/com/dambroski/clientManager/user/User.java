@@ -30,5 +30,20 @@ public class User {
 	private String name;
 	
 	private String password;
+	
+	//User configurations
+	
+	private String limitTimeOfSession;
+	
+	private String limitDurationOfSession;
+	
+	private int numberOfClientsPerPage;
+	
+	private int numberOfSessionsPerPage;
+	
+	private int numberOfPagamentsPerPage;
+	
+	private int numberOfPagamentsPerMonthPage;
+	
 
 }

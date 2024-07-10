@@ -10,4 +10,6 @@ public interface ClientSessionsDaysService  {
 
 	ClientSessionDays put(ClientSessionDays newSessionsDays, Long sessionDayId);
 
+	void delete(Long sessionDaysId);
+
 }

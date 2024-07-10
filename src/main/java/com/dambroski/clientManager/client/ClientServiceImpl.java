@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.dambroski.clientManager.Pagament.Pagament;
 import com.dambroski.clientManager.clientSession.ClientSession;
 import com.dambroski.clientManager.clientSessionDays.ClientSessionDays;
+import com.dambroski.clientManager.clientSessionDays.ClientSessionsDaysRepository;
 import com.dambroski.clientManager.erros.ClientNotFoundException;
 
 @Service
@@ -17,6 +18,9 @@ public class ClientServiceImpl implements ClientService{
 	
 	@Autowired
 	ClientRepository repository;
+	
+	@Autowired
+	ClientSessionsDaysRepository clientDaysRepository;
 
 	@Override
 	public List<Client> getAll() {
@@ -52,6 +56,10 @@ public class ClientServiceImpl implements ClientService{
 			oldClient.setName(client.getName());
 		}
 		
+		if(Objects.nonNull(client.getEntranceDate())) {
+			oldClient.setEntranceDate(client.getEntranceDate());
+		}
+		
 		if(Objects.nonNull(client.getBirthDate())) {
 			oldClient.setBirthDate(client.getBirthDate());
 		}
@@ -60,8 +68,50 @@ public class ClientServiceImpl implements ClientService{
 			oldClient.setPayday(client.getPayday());
 		}
 		
+		if(Objects.nonNull(client.isActive())){
+				oldClient.setActive(client.isActive());
+		}
+		if(Objects.nonNull(client.isClientPayOnDay())) {
+			oldClient.setClientPayOnDay(client.isClientPayOnDay());
+		}
+		if(Objects.nonNull(client.getEmail())) {
+			oldClient.setEmail(client.getEmail());
+		}
+		if(Objects.nonNull(client.getTelephone())) {
+			oldClient.setTelephone(client.getTelephone());
+		}
+		
+		
 		
 		return repository.save(oldClient);
+	}
+
+	@Override
+	public Client activeChange(Long clientId) {
+		Client client = repository.findById(clientId)
+				.orElseThrow(() -> new ClientNotFoundException("Client not found"));
+		
+		if(client.isActive()) {
+			if(!client.isClientPayOnDay()) {
+					clientDaysRepository.deleteAll(client.getDaysOfSession());
+					List<ClientSessionDays> emptyList = new ArrayList<ClientSessionDays>();
+					client.setDaysOfSession(emptyList);
+				
+			}
+			client.setActive(false);
+		}else {
+			client.setActive(true);
+		}
+		
+		return repository.save(client);
+	}
+
+	@Override
+	public void delete(Long clientId) {
+		Client client = repository.findById(clientId)
+				.orElseThrow(() -> new ClientNotFoundException("Client not found"));
+		repository.delete(client);
+		
 	}
 
 }

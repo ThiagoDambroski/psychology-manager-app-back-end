@@ -3,6 +3,7 @@ package com.dambroski.clientManager.clientSessionDays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,9 +31,14 @@ public class ClientSessionDaysController {
 		
 	}
 	
-	@PutMapping("/put/{sessionDaysId})")
+	@PutMapping("/put/{sessionDaysId}")
 	public ClientSessionDays put(@RequestBody ClientSessionDays newSessionsDays,
 			@PathVariable("sessionDaysId")Long sessionDayId) {
 		return service.put(newSessionsDays,sessionDayId);
+	}
+	
+	@DeleteMapping("/delete/{sessionDaysId}")
+	public void delete(@PathVariable("sessionDaysId") Long sessionDaysId) {
+		service.delete(sessionDaysId);
 	}
 }

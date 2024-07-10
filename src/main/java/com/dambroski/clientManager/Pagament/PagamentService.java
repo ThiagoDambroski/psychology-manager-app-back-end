@@ -10,4 +10,6 @@ public interface PagamentService {
 
 	Pagament put(Pagament pagament, Long pagamentId);
 
+	List<Pagament> getByClientId(Long clientId);
+
 }

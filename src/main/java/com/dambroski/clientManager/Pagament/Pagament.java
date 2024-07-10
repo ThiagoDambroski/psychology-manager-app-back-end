@@ -39,6 +39,8 @@ public class Pagament {
 	
 	private Date payDate;
 	
+	private String pagamentTags;
+	
 	private float value;
 
 }

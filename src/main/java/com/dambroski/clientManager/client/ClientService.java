@@ -10,4 +10,8 @@ public interface ClientService {
 
 	Client put(Client client, Long clientId);
 
+	Client activeChange(Long clientId);
+
+	void delete(Long clientId);
+
 }

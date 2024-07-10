@@ -10,4 +10,6 @@ public interface ClientSessionService {
 
 	ClientSession put(ClientSession newClientSession, Long clientSessionId);
 
+	List<ClientSession> getByClientId(Long clientId);
+
 }

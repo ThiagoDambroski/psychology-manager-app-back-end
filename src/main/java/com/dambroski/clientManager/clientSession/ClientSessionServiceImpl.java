@@ -2,6 +2,7 @@ package com.dambroski.clientManager.clientSession;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,12 +48,28 @@ public class ClientSessionServiceImpl implements ClientSessionService {
 		if(Objects.nonNull(newClientSession.getSessionDescription())) {
 			oldClientSession.setSessionDescription(newClientSession.getSessionDescription());
 		}
+		if(Objects.nonNull(newClientSession.getTagsDescription())) {
+			oldClientSession.setTagsDescription(newClientSession.getTagsDescription());
+		}
 		
 		if(Objects.nonNull(newClientSession.getDate())) {
 			oldClientSession.setDate(newClientSession.getDate());
 		}
 		
 		return repository.save(oldClientSession);
+	}
+
+	@Override
+	public List<ClientSession> getByClientId(Long clientId) {
+		Client client = clientRepository.findById(clientId)
+				.orElseThrow(() -> new ClientNotFoundException("Client not found"));
+		
+		List<ClientSession> allSessions = repository.findAll();
+		
+		List <ClientSession> clientSession = allSessions.stream().filter(session -> session.getClient()
+				.equals(client)).collect(Collectors.toList());
+		
+		return clientSession;
 	}
 
 }

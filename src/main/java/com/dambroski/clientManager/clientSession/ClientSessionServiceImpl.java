@@ -45,6 +45,11 @@ public class ClientSessionServiceImpl implements ClientSessionService {
 		ClientSession oldClientSession = repository.findById(clientSessionId)
 				.orElseThrow(() -> new ClientSessionNotFoundException("Session not found"));
 		
+		if(Objects.nonNull(newClientSession.isAttend())) {
+			oldClientSession.setAttend(newClientSession.isAttend());
+		}
+		
+		
 		if(Objects.nonNull(newClientSession.getSessionDescription())) {
 			oldClientSession.setSessionDescription(newClientSession.getSessionDescription());
 		}

@@ -9,6 +9,7 @@ import com.dambroski.clientManager.clientSessionDays.ClientSessionDays;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,6 +42,7 @@ public class Pagament {
 	
 	private String pagamentTags;
 	
+	@Column(name = "money_value")
 	private float value;
 
 }

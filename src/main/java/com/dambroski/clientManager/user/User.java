@@ -1,17 +1,12 @@
 package com.dambroski.clientManager.user;
 
-import java.util.Date;
-import java.util.List;
 
-import com.dambroski.clientManager.Pagament.Pagament;
-import com.dambroski.clientManager.client.Client;
-import com.dambroski.clientManager.clientSession.ClientSession;
-import com.dambroski.clientManager.clientSessionDays.ClientSessionDays;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,30 +15,29 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "user_app")
 public class User {
-	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
-	
-	private String name;
-	
-	private String password;
-	
-	//User configurations
-	
-	private String limitTimeOfSession;
-	
-	private String limitDurationOfSession;
-	
-	private int numberOfClientsPerPage;
-	
-	private int numberOfSessionsPerPage;
-	
-	private int numberOfPagamentsPerPage;
-	
-	private int numberOfPagamentsPerMonthPage;
-	
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    private String name;
+
+    private String password;
+
+    // User configurations
+    private String limitTimeOfSession;
+
+    private String limitDurationOfSession;
+
+    private int numberOfClientsPerPage;
+
+    private int numberOfSessionsPerPage;
+
+    private int numberOfPagamentsPerPage;
+
+    private int numberOfPagamentsPerMonthPage;
+
+   
 }

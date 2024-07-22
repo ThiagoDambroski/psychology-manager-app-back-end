@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User post(User user) {
+		user.setPassword(user.getPassword()); // Hashes the password
+        
 		user.setLimitTimeOfSession("22:00");
 		user.setLimitDurationOfSession("02:00");;
 		user.setNumberOfClientsPerPage(10);

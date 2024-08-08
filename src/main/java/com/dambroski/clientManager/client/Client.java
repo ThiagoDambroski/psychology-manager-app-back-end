@@ -30,6 +30,10 @@ public class Client {
     
     private String name;
     
+    public String cpf;
+    
+    public String address;
+    
     private String email;
     
     private String telephone;

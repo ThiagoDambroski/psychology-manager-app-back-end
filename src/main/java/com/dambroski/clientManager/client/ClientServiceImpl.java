@@ -74,6 +74,12 @@ public class ClientServiceImpl implements ClientService{
 		if(Objects.nonNull(client.isClientPayOnDay())) {
 			oldClient.setClientPayOnDay(client.isClientPayOnDay());
 		}
+		if(Objects.nonNull(client.getCpf())) {
+			oldClient.setCpf(client.getCpf());
+		}
+		if(Objects.nonNull(client.getAddress())) {
+			oldClient.setAddress(client.getAddress());
+		}
 		if(Objects.nonNull(client.getEmail())) {
 			oldClient.setEmail(client.getEmail());
 		}
